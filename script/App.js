@@ -1,82 +1,54 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import * as React from 'react';
+import { View, StyleSheet, Dimensions } from 'react-native';
+import { TabViewAnimated, TabBar, SceneMap } from '../third/react-native-tab-view/index';
 
-import React, { Component } from 'react';
-import {
-    StyleSheet,
-    View,
-    Platform,
-    TouchableHighlight,
-    Text,
-    Alert,
-} from 'react-native';
-import{
-    Workspace,
-    SMMapView,
-    Utility,
-} from 'imobile_for_reactnative';
+import Home from './homePage/home'
 
-export default class App extends Component<{}> {
+const initialLayout = {
+  height: 0,
+  width: Dimensions.get('window').width,
+};
 
-    _onGetInstance = (mapView) => {
-        this.mapView = mapView;
-        this._addMap();
-    }
+const FirstRoute = () => <Home/>;
+const SecondRoute = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
+const ThirdRoute = () => <View style={[ styles.container, { backgroundColor: '#ffffff' } ]} />;
 
-    render() {
-      return (
-        <View style={styles.container}>
-            <SMMapView style={styles.map} onGetInstance={this._onGetInstance}/>
-        </View>
-      );
-    }
+export default class TabViewExample extends React.Component {
+  state = {
+    index: 0,
+    routes: [
+      { key: 'first', title: '首页' },
+      { key: 'second', title: '云服务' },
+      { key: 'third', title: '我的' },
+    ],
+  };
 
-    _addMap=()=> {
-        var workspaceModule = new Workspace();
-        (async function () {
-            this.workspace = await workspaceModule.createObj();
-            this.mapControl = await this.mapView.getMapControl();
-            this.map = await this.mapControl.getMap();
-         
-            var filePath = '';
-            if(Platform.OS === 'ios'){
-                filePath = await Utility.appendingHomeDirectory('/Documents/China400.smwu');
-            }else{
-                filePath = await Utility.appendingHomeDirectory('/SampleData/China400/China400.smwu');
-            }
+  _handleIndexChange = index => this.setState({ index });
 
-            var openWk = await this.workspace.open(filePath);
-            await this.map.setWorkspace(this.workspace);
-            var mapName = await this.workspace.getMapName(0);
-            await this.map.open(mapName);
-            await this.map.refresh();
-        }).bind(this)();
-    }
+  _renderHeader = props => <TabBar {...props} />;
+
+  _renderScene = SceneMap({
+    first: FirstRoute,
+    second: SecondRoute,
+    third: ThirdRoute,
+  });
+
+  render() {
+    return (
+      <TabViewAnimated
+        style={styles.container}
+        navigationState={this.state}
+        renderScene={this._renderScene}
+        renderFooter={this._renderHeader}
+        onIndexChange={this._handleIndexChange}
+        initialLayout={initialLayout}
+      />
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    map: {
-        flex: 1,
-        alignSelf: 'stretch',
-    },
-    button: {
-        top:50,
-        left:50,
-        position:'absolute',
-        flex:1,
-    },
-    highlight:{
-        height:50,
-        width:100,
-        backgroundColor:'red',
-    }
+  container: {
+    flex: 1,
+  },
 });
