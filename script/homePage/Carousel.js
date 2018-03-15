@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet, Dimensions, Text } from 'react-native';
+import { View, StyleSheet, Dimensions, Text, Image } from 'react-native';
 
 import Carousel from '../../third/react-native-looped-carousel/index';
 
@@ -29,9 +29,8 @@ export default class CarouselExample extends React.Component {
           pageInfo
           onAnimateNextPage={(p) => console.log(p)}
         >
-          <View style={[{ backgroundColor: '#BADA55' }, this.state.size]}><Text>1</Text></View>
-          <View style={[{ backgroundColor: 'red' }, this.state.size]}><Text>2</Text></View>
-          <View style={[{ backgroundColor: 'blue' }, this.state.size]}><Text>3</Text></View>
+          <View style={[{ backgroundColor: '#F5FCFF' }, this.state.size]}><Image style={styles.scrollImage} source={require('../../image/home_scroll1.png')}/></View>
+          <View style={[{ backgroundColor: '#F5FCFF' }, this.state.size]}><Image style={styles.scrollImage} source={require('../../image/home_scroll2.png')}/></View>
         </Carousel>
       </View>
     );
@@ -40,8 +39,11 @@ export default class CarouselExample extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height:200,
+    height:250,
     width:width,
     alignSelf: 'center',
   },
+  scrollImage: {
+    alignSelf: 'center',
+  }
 });

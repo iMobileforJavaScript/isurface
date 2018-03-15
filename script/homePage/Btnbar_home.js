@@ -24,7 +24,7 @@ export default class Btnbar extends React.Component {
       let element = <BtnOne BtnClick={delegate} BtnImageSrc={src} BtnText={str}/>;
       return (element);
     } else {
-      throw Error('please check type of params');
+      throw Error('BthBar: please check type of params');
     }
   }
 
