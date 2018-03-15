@@ -4,6 +4,7 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import CarouselExample from './Carousel';
 import Btnbar_home from './Btnbar_home';
 import HomeUsualTitle from './Home_usual_title';
+import HomeUsualMap from './Home_usual_map';
 
 const width = Dimensions.get('window').width;
 
@@ -17,6 +18,7 @@ export default class Home extends React.Component {
           <Btnbar_home/>
         </View>
         <HomeUsualTitle/>
+        <HomeUsualMap/>
       </View>
     );
   }
