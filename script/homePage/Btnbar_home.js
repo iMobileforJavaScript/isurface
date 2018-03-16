@@ -41,11 +41,14 @@ export default class Btnbar extends React.Component {
   }
 
   render() {
+    const mapLoadClick = this.props.mapLoad ? this.props.mapLoad : this._click_mapLoad;
+    const myMapClick = this.props.myMap ? this.props.myMap : this._click_myMap;
+    const mapShareClick = this.props.mapShare ? this.props.mapShare : this._click_mapShare;
     return (
       <View style={styles.container}>
-        {this._addElement(this._click_mapLoad,home_mapLoadImgSrc,mapLoad)}
-        {this._addElement(this._click_myMap,home_myMapImgSrc,myMap)}
-        {this._addElement(this._click_mapShare,home_mapShareImgSrc,mapShare)}
+        {this._addElement(mapLoadClick,home_mapLoadImgSrc,mapLoad)}
+        {this._addElement(myMapClick,home_myMapImgSrc,myMap)}
+        {this._addElement(mapShareClick,home_mapShareImgSrc,mapShare)}
       </View>
     );
   }

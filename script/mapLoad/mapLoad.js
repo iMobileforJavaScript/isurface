@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions, Text } from 'react-native';
 
 const width = Dimensions.get('window').width;
 
-export default class mapLoad extends React.Component {
+export default class MapLoad extends React.Component {
+  componentDidMount(){
+  }
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>details page</Text>
       </View>
     );
   }

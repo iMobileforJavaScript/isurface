@@ -36,6 +36,7 @@ export default class TabViewExample extends React.Component {
   render() {
     return (
       <TabViewAnimated
+        ref='tabBar'
         style={styles.container}
         navigationState={this.state}
         renderScene={this._renderScene}
