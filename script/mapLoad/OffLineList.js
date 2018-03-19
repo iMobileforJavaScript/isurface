@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, StyleSheet, Dimensions, Text, FlatList, TouchableHighlight, PixelRatio } from 'react-native';
 
 const width = Dimensions.get('window').width;
-const testData = [{ key: '地图一' },{ key: '地图二' },{ key: '地图三' },{ key: '地图四' }];
+const testData = [{ key: '地图一' }, { key: '地图二' }, { key: '地图三' }, { key: '地图四' }];
 
 class Item extends React.Component {
   _separator = () => {
@@ -22,10 +22,10 @@ class Item extends React.Component {
 }
 
 export default class OffLineList extends React.Component {
-  _renderItem =({item})=>{
+  _renderItem = ({ item }) => {
     let key = item.key;
     return (
-      <Item text={key} itemClick={()=>{console.log(key)}}/>
+      <Item text={key} itemClick={() => { console.log(key) }} />
     );
   }
 

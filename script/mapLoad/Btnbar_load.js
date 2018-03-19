@@ -16,33 +16,33 @@ const OSM = 'OSM';
 const Google = '谷歌';
 
 export default class Btnbar_mapLoad extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
-  _addElement=(delegate,src,str)=>{
-    if(typeof delegate == 'function' && typeof str == 'string'){
+  _addElement = (delegate, src, str) => {
+    if (typeof delegate == 'function' && typeof str == 'string') {
 
-      let element = <BtnOne BtnClick={delegate} BtnImageSrc={src} BtnText={str}/>;
+      let element = <BtnOne BtnClick={delegate} BtnImageSrc={src} BtnText={str} />;
       return (element);
     } else {
       throw Error('BthBar: please check type of params');
     }
   }
 
-  _click_TD=()=>{
+  _click_TD = () => {
     console.log(TD);
   }
 
-  _click_Baidu=()=>{
+  _click_Baidu = () => {
     console.log(Baidu);
   }
 
-  _click_OSM=()=>{
+  _click_OSM = () => {
     console.log(OSM);
   }
 
-  _click_Google=()=>{
+  _click_Google = () => {
     console.log(Google);
   }
 
@@ -53,10 +53,10 @@ export default class Btnbar_mapLoad extends React.Component {
     const GoogleClick = this.props.Google ? this.props.Google : this._click_Google;
     return (
       <View style={styles.container}>
-        {this._addElement(TDClick,TDImgSrc,TD)}
-        {this._addElement(BaiduClick,BaiduMapImgSrc,Baidu)}
-        {this._addElement(OSMClick,OSMImgSrc,OSM)}
-        {this._addElement(GoogleClick,GoogleImgSrc,Google)}
+        {this._addElement(TDClick, TDImgSrc, TD)}
+        {this._addElement(BaiduClick, BaiduMapImgSrc, Baidu)}
+        {this._addElement(OSMClick, OSMImgSrc, OSM)}
+        {this._addElement(GoogleClick, GoogleImgSrc, Google)}
       </View>
     );
   }
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    width:0.8*width,
+    width: 0.8 * width,
     backgroundColor: 'transparent',
     alignSelf: 'center',
   },

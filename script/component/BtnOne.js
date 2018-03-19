@@ -10,9 +10,9 @@ export default class BtnOne extends React.Component {
 
   render() {
     return (
-      <TouchableHighlight style = {styles.container} onPress = {this.props.BtnClick} underlayColor={'rgba(34,26,38,0.1)'}>
-        <View style = {styles.inner}>
-          {this.props.BtnImageSrc && <Image style={styles.image} source={this.props.BtnImageSrc}/>}
+      <TouchableHighlight style={styles.container} onPress={this.props.BtnClick} underlayColor={'rgba(34,26,38,0.1)'}>
+        <View style={styles.inner}>
+          {this.props.BtnImageSrc && <Image style={styles.image} source={this.props.BtnImageSrc} />}
           {this.props.BtnText && <Text style={styles.text}>{this.props.BtnText}</Text>}
         </View>
       </TouchableHighlight>
@@ -22,8 +22,8 @@ export default class BtnOne extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height:70,
-    width:70,
+    height: 70,
+    width: 70,
     backgroundColor: 'transparent',
   },
   inner: {
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   text: {
     backgroundColor: 'transparent',
-    width:70,
+    width: 70,
     textAlign: 'center',
   }
 });
