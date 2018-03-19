@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, NavigationActions } from 'react-navigation';
 
 //倒入组件
 import CarouselExample from './Carousel';
@@ -14,6 +14,7 @@ import MapLoad from '../mapLoad/mapLoad';
 const width = Dimensions.get('window').width;
 
 class HomeMain extends React.Component {
+
   _goToMapLoad =()=>{this.props.navigation.navigate('MapLoad')}
 
   render() {
@@ -41,7 +42,10 @@ const RootStack = StackNavigator(
     MapLoad: {
       screen: MapLoad,
       navigationOptions:{
-        headerStyle:{backgroundColor:'#2196f3'}
+        headerTitle: '地图加载',
+        headerStyle:{backgroundColor:'#2196f3'},
+        headerTitleStyle: {alignSelf:'center'},
+        headerTintColor: 'white',
       }
     },
   },

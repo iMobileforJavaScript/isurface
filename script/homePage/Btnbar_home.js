@@ -13,7 +13,7 @@ const mapLoad = '地图加载';
 const myMap = '我的地图';
 const mapShare = '地图分享';
 
-export default class Btnbar extends React.Component {
+export default class Btnbar_home extends React.Component {
   constructor(props){
     super(props);
   }
