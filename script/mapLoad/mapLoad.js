@@ -21,7 +21,7 @@ export default class MapLoad extends React.Component {
       <View style={styles.container}>
         <UsualTitle title='在线地图' themeColor='#F5FCFF' />
         <View style={styles.btnTabContainer}>
-          <Btnbar_mapLoad />
+          <Btnbar_mapLoad TD={()=>{this.props.navigation.navigate('Map');}}/>
         </View>
         <UsualTitle title='离线地图' isRightBtn={true} btnText='更多' btnClick={this._offLine_More} />
         <OffLineList />

@@ -8,12 +8,9 @@ import Btnbar_home from './Btnbar_home';
 import HomeUsualTitle from './Home_usual_title';
 import HomeUsualMap from './Home_usual_map';
 
-//倒入路由页面
-import MapLoad from '../mapLoad/mapLoad';
-
 const width = Dimensions.get('window').width;
 
-class HomeMain extends React.Component {
+export default class HomeMain extends React.Component {
 
   _goToMapLoad =()=>{this.props.navigation.navigate('MapLoad')}
 
@@ -28,35 +25,6 @@ class HomeMain extends React.Component {
         <HomeUsualMap/>
       </View>
     );
-  }
-}
-
-const RootStack = StackNavigator(
-  {
-    Home: {
-      screen: HomeMain,
-      navigationOptions:{
-        header:null,
-      }
-    },
-    MapLoad: {
-      screen: MapLoad,
-      navigationOptions:{
-        headerTitle: '地图加载',
-        headerStyle:{backgroundColor:'#2196f3'},
-        headerTitleStyle: {alignSelf:'center'},
-        headerTintColor: 'white',
-      }
-    },
-  },
-  {
-    initialRouteName: 'Home',
-  }
-);
-
-export default class Home extends React.Component {
-  render() {
-    return <RootStack />;
   }
 }
 

@@ -2,14 +2,14 @@ import * as React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 
-import Home from './homePage/home'
+import RouterHome from './Router_home';
 
 const initialLayout = {
   height: 0,
   width: Dimensions.get('window').width,
 };
 
-const FirstRoute = () => <Home/>;
+const FirstRoute = () => <RouterHome/>;
 const SecondRoute = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
 const ThirdRoute = () => <View style={[ styles.container, { backgroundColor: '#ffffff' } ]} />;
 
@@ -20,6 +20,7 @@ export default TabNavigator({
   
 },{
   tabBarPosition: 'bottom', 
+  swipeEnabled: false,
 });
 
 const styles = StyleSheet.create({
