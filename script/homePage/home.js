@@ -1,12 +1,18 @@
+/*
+  Copyright © SuperMap. All rights reserved.
+  Author: Wang zihao
+  E-mail: zihaowang5325@qq.com 
+*/
+
 import * as React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 
-//倒入组件
-import CarouselExample from './Carousel';
-import Btnbar_home from './Btnbar_home';
-import HomeUsualTitle from './Home_usual_title';
-import HomeUsualMap from './Home_usual_map';
+
+import CarouselExample from './Carousel';   //轮播图
+import Btnbar_home from './Btnbar_home';    //按钮栏
+import HomeUsualTitle from './Home_usual_title';    //小标题
+import HomeUsualMap from './Home_usual_map';    //常用地图组件
 
 const width = Dimensions.get('window').width;
 

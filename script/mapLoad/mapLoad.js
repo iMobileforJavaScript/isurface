@@ -1,3 +1,9 @@
+/*
+  Copyright © SuperMap. All rights reserved.
+  Author: Wang zihao
+  E-mail: zihaowang5325@qq.com 
+*/
+
 import * as React from 'react';
 import { View, StyleSheet, Dimensions, Text } from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
@@ -21,7 +27,12 @@ export default class MapLoad extends React.Component {
       <View style={styles.container}>
         <UsualTitle title='在线地图' themeColor='#F5FCFF' />
         <View style={styles.btnTabContainer}>
-          <Btnbar_mapLoad TD={()=>{this.props.navigation.navigate('Map');}}/>
+          <Btnbar_mapLoad
+            TD={() => { this.props.navigation.navigate('Map', { type: 'TD' }); }}
+            Baidu={() => { this.props.navigation.navigate('Map', { type: 'Baidu' }); }}
+            OSM={() => { this.props.navigation.navigate('Map', { type: 'OSM' }); }}
+            Google={() => { this.props.navigation.navigate('Map', { type: 'Google' }); }}
+          />
         </View>
         <UsualTitle title='离线地图' isRightBtn={true} btnText='更多' btnClick={this._offLine_More} />
         <OffLineList />

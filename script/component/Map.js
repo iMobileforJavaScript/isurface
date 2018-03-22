@@ -1,8 +1,45 @@
+/*
+  Copyright © SuperMap. All rights reserved.
+  Author: Wang zihao
+  E-mail: zihaowang5325@qq.com 
+*/
+
 import * as React from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
-import { Workspace, SMMapView, Utility } from 'imobile_for_reactnative';
+import { View, StyleSheet, Platform, Geolocation } from 'react-native';
+import { Workspace, SMMapView, Utility, Point2D } from 'imobile_for_reactnative';
 
 export default class Map extends React.Component {
+  constructor(props) {
+    super(props);
+    const { state } = this.props.navigation
+    switch (state.params.type) {  //state.params.type最好进行判定
+      case 'TD':
+        this.DSParams = { server: 'http://t0.tianditu.com/vec_w/wmts', engineType: 23, driver: 'WMTS', alias: 'baseMap' };
+        this.labelDSParams = { server: 'http://t0.tianditu.com/cva_w/wmts', engineType: 23, driver: 'WMTS', alias: 'label' };
+        this.layerIndex = 0;
+        break;
+      case 'Baidu':
+        this.DSParams = { server: 'http://www.baidu.com', engineType: 227 };
+        this.labelDSParams = false;
+        this.layerIndex = 0;
+        break;
+      case 'Google':
+        this.DSParams = { server: 'http://www.google.cn/maps', engineType: 223 };
+        this.labelDSParams = false;
+        this.layerIndex = 'roadmap';
+        break;
+      case 'OSM':
+        this.DSParams = { server: 'http://openstreetmap.org', engineType: 228 };
+        this.labelDSParams = false;
+        this.layerIndex = 0;
+        break;
+      default:
+        this.DSParams = { server: 'http://openstreetmap.org', engineType: 228 };
+        this.labelDSParams = false;
+        this.layerIndex = 0;
+    }
+  }
+
   _onGetInstance = (mapView) => {
     this.mapView = mapView;
     this._addMap();
@@ -18,23 +55,32 @@ export default class Map extends React.Component {
 
   _addMap = () => {
     const workspaceModule = new Workspace();
+    const point2dModule = new Point2D();
     (async function () {
       this.workspace = await workspaceModule.createObj();
       this.mapControl = await this.mapView.getMapControl();
       this.map = await this.mapControl.getMap();
-
-      let filePath = '';
-      if (Platform.OS === 'ios') {
-        filePath = await Utility.appendingHomeDirectory('/Documents/China400.smwu');
-      } else {
-        filePath = await Utility.appendingHomeDirectory('/SampleData/China400/China400.smwu');
-      }
-
-      let openWk = await this.workspace.open(filePath);
       await this.map.setWorkspace(this.workspace);
-      let mapName = await this.workspace.getMapName(0);
-      await this.map.open(mapName);
-      await this.map.refresh();
+
+      await this.map.setScale(0.0001);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          let lat = position.coords.latitude;
+          let lon = position.coords.longitude;
+          (async () => {
+            let centerPoint = await point2dModule.createObj(lon, lat);
+            await this.map.setCenter(centerPoint);
+            await this.map.refresh();
+          }).bind(this)();
+        }
+      );
+
+      let dsBaseMap = await this.workspace.openDatasource(this.DSParams);
+      await this.map.addLayer(await dsBaseMap.getDataset(this.layerIndex), true);
+      if (this.labelDSParams) {
+        let dsLabel = await this.workspace.openDatasource(this.labelDSParams);
+        await this.map.addLayer(await dsLabel.getDataset(this.layerIndex), true);
+      }
     }).bind(this)();
   }
 
