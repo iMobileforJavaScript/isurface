@@ -15,23 +15,23 @@ const RootStack = StackNavigator(
   {
     Home: {
       screen: HomeMain,
-      navigationOptions:{
-        header:null,
+      navigationOptions: {
+        header: null,
       }
     },
     MapLoad: {
       screen: MapLoad,
-      navigationOptions:{
+      navigationOptions: {
         headerTitle: '地图加载',
-        headerStyle:{backgroundColor:'#2196f3'},
-        headerTitleStyle: {alignSelf:'center'},
+        headerStyle: { backgroundColor: '#2196f3' },
+        headerTitleStyle: { alignSelf: 'center' },
         headerTintColor: 'white',
       }
     },
     Map: {
       screen: Map,
-      navigationOptions:{
-        headerStyle:{backgroundColor:'#2196f3'},
+      navigationOptions: {
+        headerStyle: { backgroundColor: '#2196f3' },
         headerTintColor: 'white',
       }
     },

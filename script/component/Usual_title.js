@@ -1,23 +1,32 @@
+/*
+  Copyright © SuperMap. All rights reserved.
+  Author: Wang zihao
+  E-mail: zihaowang5325@qq.com 
+*/
+
 import * as React from 'react';
 import { View, StyleSheet, Dimensions, Text, TouchableHighlight } from 'react-native';
+import * as Util from '../util/const_util';
 
-const width = Dimensions.get('window').width;
-const themeColor = '#F5FCFF';   //title蓝色
-const headColor = '#2196f3';
+import TextBtn from '../component/Text_btn';
+
+const WIDTH = Util.WIDTH;
+const themeColor = Util.USUAL_GREEN;
+const headColor = Util.USUAL_BLUE;
 
 export default class UsualTitle extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
   render() {
-    const bgColorCon = this.props.headColor ? {backgroundColor:this.props.headColor} : null;
-    const bgColorTitle = this.props.themeColor ? {backgroundColor:this.props.themeColor} : null;
+    const bgColorCon = this.props.headColor ? { backgroundColor: this.props.headColor } : null;
+    const bgColorTitle = this.props.themeColor ? { backgroundColor: this.props.themeColor } : null;
     return (
-      <View style={[styles.container,bgColorCon]}>
-        <View style={[styles.title,bgColorTitle]}>
+      <View style={[styles.container, bgColorCon]}>
+        <View style={[styles.title, bgColorTitle]}>
           <Text style={styles.titleText}>{this.props.title ? this.props.title : '默认标题'}</Text>
-          {this.props.isRightBtn && <TouchableHighlight style={styles.titleBtn} onPress={this.props.btnClick} underlayColor={'rgba(34,26,38,0.1)'}><Text style={styles.btnText}>{this.props.btnText ? this.props.btnText :'按钮'}</Text></TouchableHighlight>}
+          {this.props.isRightBtn && <TextBtn btnText={this.props.btnText} btnClick={this.props.btnClick} />}
         </View>
       </View>
     );
@@ -26,9 +35,10 @@ export default class UsualTitle extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    width:width,
+    width: WIDTH,
     backgroundColor: headColor,
-    marginTop:10,
+    marginTop: 10,
+    alignSelf: 'center',
   },
   title: {
     backgroundColor: themeColor,
@@ -43,15 +53,5 @@ const styles = StyleSheet.create({
     marginLeft: 3,
     width: 100,
     fontSize: 20,
-  },
-  titleBtn: {
-    marginRight: 10,
-    width: 70,
-  },
-  btnText: {
-    textDecorationLine: 'underline',
-    fontSize: 17,
-    color: 'blue',
-    alignSelf: 'center',
   },
 });
