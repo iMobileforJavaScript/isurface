@@ -9,7 +9,10 @@ import { StackNavigator } from 'react-navigation';
 import * as Util from './util/const_util';
 
 import Login from './mine/login';
-import Map from './component/Map';
+import Register from './register&getBack/register';
+
+const headColor = Util.USUAL_BLUE;
+const headFontColor = 'white';
 
 const RootStack3 = StackNavigator(
   {
@@ -17,6 +20,15 @@ const RootStack3 = StackNavigator(
       screen: Login,
       navigationOptions: {
         header: null
+      }
+    },
+    Register: {
+      screen: Register,
+      navigationOptions: {
+        headerTitle: '我的iSurface',
+        headerStyle: { backgroundColor: headColor },
+        headerTitleStyle: { alignSelf: 'center' },
+        headerTintColor: headFontColor,
       }
     },
   },

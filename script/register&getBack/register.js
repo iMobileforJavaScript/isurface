@@ -8,39 +8,51 @@ import * as React from 'react';
 import { View, StyleSheet, TouchableHighlight, Text } from 'react-native';
 import * as Util from '../util/const_util';
 
-import Header from '../component/Header';
-import Input from './Input';
-import Tips from './Tips';
-import TextBtn from '../component/Text_btn';
+import BorderInput from './border_input';
+import BtnTwo from '../component/BtnTwo';
+import CheckBox from '../component/checkBox';
 
 const WIDTH = Util.WIDTH;
 const BGCOLOR = Util.USUAL_GREEN
 
-export default class Login extends React.Component {
-  _forgetPassword = () => {
-    console.log('forget password');
+export default class Register extends React.Component {
+
+  _sendMessage = () => {
+    console.log('send message');
   }
 
   _register = () => {
     console.log('register');
   }
 
-  _OK = () => {
-    console.log('ok');
+  _checkBoxChange = (changed) => {
+    console.log('ischecked:' + changed);
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Header title='我的iSurface' />
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
-          <View style={{ alignItems: 'center', }}>
-            <Input placeholder='手机号' />
-            <Input placeholder='密码' password={true} image={require('../../image/lock.png')} />
-            <Tips tipText='地图慧账户可直接登录' btnText='忘记密码' btnClick={this._forgetPassword} />
-            <TouchableHighlight style={styles.btn} onPress={this._OK} underlayColor={Util.UNDERLAYCOLOR}><Text style={styles.btn_text}>确定</Text></TouchableHighlight>
-            <TextBtn width={150} height={40} btnText='没有账户立即注册' btnClick={this._register} />
+        <View style={[styles.containerView, { marginTop: 70 }]}>
+          <BorderInput password={false} placeholder='手机号' />
+        </View>
+        <View style={styles.containerView}>
+          <BorderInput password={false} placeholder='昵称' />
+        </View>
+        <View style={[styles.containerView, { display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: 300 }]}>
+          <BorderInput password={false} placeholder='短信验证码' width={190} />
+          <BtnTwo text='发送验证码' width={100} size={13} radius={5} btnClick={this._sendMessage} />
+        </View>
+        <View style={styles.containerView}>
+          <BorderInput password={true} placeholder='密码' />
+        </View>
+        <View style={[styles.containerView, { display: 'flex', flexDirection: 'row', width: 300, alignSelf: 'center' }]}>
+          <CheckBox onChange={this._checkBoxChange} />
+          <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
+            <Text style={{ fontSize: 14 }}> 我已阅读并接受《超图软件用户服务协议》</Text>
           </View>
+        </View>
+        <View style={[styles.containerView, { marginTop: 50 }]}>
+          <BtnTwo text='注册' btnClick={this._register} />
         </View>
       </View>
     );
@@ -52,19 +64,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: BGCOLOR,
   },
-  btn: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 40,
-    width: 70,
-    borderRadius: 20,
-    backgroundColor: Util.USUAL_BLUE,
-    marginTop: 50,
-    marginBottom: 70,
+  containerView: {
+    marginTop: 10,
+    marginBottom: 10,
+    alignSelf: 'center',
   },
-  btn_text: {
-    color: 'white',
-    fontSize: 17,
-  }
 });

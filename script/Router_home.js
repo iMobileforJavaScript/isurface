@@ -6,10 +6,14 @@
 
 import * as React from 'react';
 import { StackNavigator } from 'react-navigation';
+import * as Util from './util/const_util';
 
 import MapLoad from './mapLoad/mapLoad';
 import HomeMain from './homePage/home';
 import Map from './component/Map';
+
+const headColor = Util.USUAL_BLUE;
+const headFontColor = 'white';
 
 const RootStack = StackNavigator(
   {
@@ -23,16 +27,16 @@ const RootStack = StackNavigator(
       screen: MapLoad,
       navigationOptions: {
         headerTitle: '地图加载',
-        headerStyle: { backgroundColor: '#2196f3' },
+        headerStyle: { backgroundColor: headColor },
         headerTitleStyle: { alignSelf: 'center' },
-        headerTintColor: 'white',
+        headerTintColor: headFontColor,
       }
     },
     Map: {
       screen: Map,
       navigationOptions: {
-        headerStyle: { backgroundColor: '#2196f3' },
-        headerTintColor: 'white',
+        headerStyle: { backgroundColor: headColor },
+        headerTintColor: headFontColor,
       }
     },
   },

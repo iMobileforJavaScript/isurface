@@ -6,6 +6,7 @@
 
 import * as React from 'react';
 import { View, StyleSheet, TouchableHighlight, Text } from 'react-native';
+import { StackNavigator, NavigationActions } from 'react-navigation';
 import * as Util from '../util/const_util';
 
 import Header from '../component/Header';
@@ -23,7 +24,7 @@ export default class Login extends React.Component {
   }
 
   _register = () => {
-    console.log('register');
+    this.props.navigation.navigate('Register');
   }
 
   _OK = () => {
