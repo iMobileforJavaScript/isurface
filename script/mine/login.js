@@ -20,7 +20,7 @@ const BGCOLOR = Util.USUAL_GREEN
 
 export default class Login extends React.Component {
   _forgetPassword = () => {
-    console.log('forget password');
+    this.props.navigation.navigate('GetBack');
   }
 
   _register = () => {

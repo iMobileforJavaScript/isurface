@@ -10,6 +10,7 @@ import * as Util from './util/const_util';
 
 import Login from './mine/login';
 import Register from './register&getBack/register';
+import GetBack from './register&getBack/GetBack';
 
 const headColor = Util.USUAL_BLUE;
 const headFontColor = 'white';
@@ -25,7 +26,16 @@ const RootStack3 = StackNavigator(
     Register: {
       screen: Register,
       navigationOptions: {
-        headerTitle: '我的iSurface',
+        headerTitle: '注册',
+        headerStyle: { backgroundColor: headColor },
+        headerTitleStyle: { alignSelf: 'center' },
+        headerTintColor: headFontColor,
+      }
+    },
+    GetBack: {
+      screen: GetBack,
+      navigationOptions: {
+        headerTitle: '找回密码',
         headerStyle: { backgroundColor: headColor },
         headerTitleStyle: { alignSelf: 'center' },
         headerTintColor: headFontColor,
