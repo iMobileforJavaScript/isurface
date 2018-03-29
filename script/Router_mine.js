@@ -11,6 +11,7 @@ import * as Util from './util/const_util';
 import Login from './mine/login';
 import Register from './register&getBack/register';
 import GetBack from './register&getBack/GetBack';
+import Setting from './setting&data/setting';
 
 const headColor = Util.USUAL_BLUE;
 const headFontColor = 'white';
@@ -18,7 +19,7 @@ const headFontColor = 'white';
 const RootStack3 = StackNavigator(
   {
     Home: {
-      screen: Login,
+      screen: Login,//Login,Setting
       navigationOptions: {
         header: null
       }

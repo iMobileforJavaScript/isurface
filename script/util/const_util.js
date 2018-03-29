@@ -5,7 +5,7 @@
 */
 
 import * as React from 'react';
-import { Dimensions, PixelRatio } from 'react-native';
+import { Dimensions, PixelRatio, View } from 'react-native';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -19,6 +19,8 @@ const USUAL_PURPLE = '#871F78'
 
 const HEADER_HEIGHT = 50;
 const HEADER_COLOR = USUAL_BLUE;
+
+const SEPARATOR = ()=> <View style={{ height: 2 / PixelRatio.get(), backgroundColor: '#bbbbbb', marginLeft: 7, marginRight: 7 }} />;
 export {
   WIDTH,
   HEIGHT,
@@ -32,4 +34,6 @@ export {
 
   HEADER_HEIGHT,
   HEADER_COLOR,
+
+  SEPARATOR,
 };
