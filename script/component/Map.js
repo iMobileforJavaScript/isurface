@@ -8,6 +8,8 @@ import * as React from 'react';
 import { View, StyleSheet, Platform, Geolocation } from 'react-native';
 import { Workspace, SMMapView, Utility, Point2D } from 'imobile_for_reactnative';
 
+import MT_BtnList from './mapTools/MT_BtnList';
+
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
@@ -46,9 +48,15 @@ export default class Map extends React.Component {
   }
 
   render() {
+    const testData = [{ key: '添加图层', image: require('../../image/add_layer.png') },
+    { key: '数据采集', image: require('../../image/data_collect.png') },
+    { key: '图层管理', image: require('../../image/layer_control.png') },
+    { key: '数据分析', image: require('../../image/analyst.png') },
+    { key: '小工具', image: require('../../image/tools.png') }];
     return (
       <View style={styles.container}>
         <SMMapView style={styles.map} onGetInstance={this._onGetInstance} />
+        <MT_BtnList data={testData}/>
       </View>
     );
   }

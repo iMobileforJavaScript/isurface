@@ -8,6 +8,7 @@ import * as React from 'react';
 import { View, StyleSheet, Dimensions, Text } from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 
+import NavigationService from '../NavigationService';   //导航模块
 import UsualTitle from '../component/Usual_title';
 import Btnbar_mapLoad from './Btnbar_load';
 import OffLineList from './OffLineList';
@@ -28,10 +29,10 @@ export default class MapLoad extends React.Component {
         <UsualTitle title='在线地图' themeColor='#F5FCFF' />
         <View style={styles.btnTabContainer}>
           <Btnbar_mapLoad
-            TD={() => { this.props.navigation.navigate('Map', { type: 'TD' }); }}
-            Baidu={() => { this.props.navigation.navigate('Map', { type: 'Baidu' }); }}
-            OSM={() => { this.props.navigation.navigate('Map', { type: 'OSM' }); }}
-            Google={() => { this.props.navigation.navigate('Map', { type: 'Google' }); }}
+            TD={() => { NavigationService.navigate('Map', { type: 'TD' }); }}
+            Baidu={() => { NavigationService.navigate('Map', { type: 'Baidu' }); }}
+            OSM={() => { NavigationService.navigate('Map', { type: 'OSM' }); }}
+            Google={() => { NavigationService.navigate('Map', { type: 'Google' }); }}
           />
         </View>
         <UsualTitle title='离线地图' isRightBtn={true} btnText='更多' btnClick={this._offLine_More} />

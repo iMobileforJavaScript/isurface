@@ -9,6 +9,7 @@ import { View, StyleSheet, TouchableHighlight, Text } from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 import * as Util from '../util/const_util';
 
+import NavigationService from '../NavigationService';   //导航模块
 import Header from '../component/Header';
 import Input from './Input';
 import Tips from './Tips';
@@ -20,11 +21,11 @@ const BGCOLOR = Util.USUAL_GREEN
 
 export default class Login extends React.Component {
   _forgetPassword = () => {
-    this.props.navigation.navigate('GetBack');
+    NavigationService.navigate('GetBack');
   }
 
   _register = () => {
-    this.props.navigation.navigate('Register');
+    NavigationService.navigate('Register');
   }
 
   _OK = () => {
