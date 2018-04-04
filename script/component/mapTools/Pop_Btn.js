@@ -14,13 +14,12 @@ const CONTAINER_HEIGHT = 1.4 * ICON_HEIGHT;
 const CONTAINER_WIDTH = CONTAINER_HEIGHT;
 const BTN_UNDERCOLOR = Util.UNDERLAYCOLOR;
 
-export default class MT_Btn extends React.Component {
+export default class Pop_Btn extends React.Component {
 
   render() {
     return (
-      <TouchableHighlight style={styles.container} onPress={this.props.BtnClick} underlayColor={BTN_UNDERCOLOR}>
+      <TouchableHighlight style={styles.container} onPress={this.props.btnClick} underlayColor={BTN_UNDERCOLOR}>
         <View style={styles.inner}>
-          {this.props.BtnImageSrc && <Image style={styles.image} source={this.props.BtnImageSrc} />}
           {this.props.BtnText && <Text style={styles.text}>{this.props.BtnText}</Text>}
         </View>
       </TouchableHighlight>
@@ -30,21 +29,22 @@ export default class MT_Btn extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: CONTAINER_HEIGHT,
-    width: CONTAINER_WIDTH,
-    backgroundColor: 'transparent',
+    height: CONTAINER_HEIGHT-10,
+    width: CONTAINER_WIDTH+10,
+    backgroundColor: 'white',
+    marginTop:5,
+    marginBottom:5,
+    borderStyle: 'solid',
+    borderColor: Util.USUAL_SEPARATORCOLOR,
+    borderWidth: 1,
+    borderRadius: 10,
   },
   inner: {
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'transparent',
-    alignSelf: 'center',
-  },
-  image: {
-    height: ICON_HEIGHT,
-    width: ICON_WIDTH,
-    alignSelf: 'center',
-    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent:'center',
   },
   text: {
     backgroundColor: 'transparent',

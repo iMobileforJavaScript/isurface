@@ -8,47 +8,34 @@ const WIDTH = Util.WIDTH;
 const ITEM_HEIGHT = 0.75 * 1.4 * 0.1 * WIDTH;
 const ITEM_WIDTH = ITEM_HEIGHT;
 const BORDERCOLOR = Util.USUAL_SEPARATORCOLOR;
-
-const ADD_LAYER = 'add_layer';
-const ANALYST = 'analyst';
-const TOOLS = 'tools';
-
-let show = false;//
-let oldPress = null;
+let show = false;
 let type = '';
 
 export default class MT_BtnList extends React.Component {
-  _showManager = (newPress) => {
-    if (oldPress && (oldPress == newPress)) {
-      show = !show;
-    } else {
-      show = true;
-      type = newPress;
-      oldPress = newPress;
-    }
+  state = {
+    data: [{ key: '添加图层', image: require('../../../image/add_layer.png'), btnClick: ()=>{console.log('44444444!')} },
+    { key: '数据采集', image: require('../../../image/data_collect.png') , btnClick: ()=>{console.log('44444444!')}},
+    { key: '图层管理', image: require('../../../image/layer_control.png') , btnClick: ()=>{console.log('44444444!')}},
+    { key: '数据分析', image: require('../../../image/analyst.png'), btnClick: ()=>{console.log('4443333444!')} },
+    { key: '小工具', image: require('../../../image/tools.png'), btnClick: ()=>{console.log('44444444!')}}],
   }
 
   _addLayer = () => {
-    this._showManager(ADD_LAYER);
+    show = !show;
+    type = 'add_layer';
     this.props.POP_List(show, type);
   }
 
   _analyst = () => {
-    this._showManager(ANALYST);
+    show = !show;
+    type = 'analyst';
     this.props.POP_List(show, type);
   }
 
   _tools = () => {
-    this._showManager(TOOLS);
+    show = !show;
+    type = 'tools';
     this.props.POP_List(show, type);
-  }
-
-  state = {
-    data: [{ key: '添加图层', image: require('../../../image/add_layer.png'), btnClick: this._addLayer },
-    { key: '数据采集', image: require('../../../image/data_collect.png') , btnClick: ()=>{console.log('44444444!')}},
-    { key: '图层管理', image: require('../../../image/layer_control.png') , btnClick: ()=>{console.log('44444444!')}},
-    { key: '数据分析', image: require('../../../image/analyst.png'), btnClick: this._analyst },
-    { key: '小工具', image: require('../../../image/tools.png'), btnClick: this._tools}],
   }
 
   _renderItem = ({ item }) => {
@@ -58,7 +45,7 @@ export default class MT_BtnList extends React.Component {
     let width = (ITEM_WIDTH < WIDTH / this.state.data.length) ? WIDTH / this.state.data.length : ITEM_WIDTH;
     return (
       <View style={[styles.item, { width: width }]}>
-        <MT_Btn BtnText={key} BtnImageSrc={image} BtnClick={btnClick} />
+        <MT_Btn BtnText={key} BtnImageSrc={image} btnClick={btnClick} />
       </View>
     );
   }
