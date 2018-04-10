@@ -19,6 +19,12 @@ import Login from './mine/login';
 import Register from './register&getBack/register';
 import GetBack from './register&getBack/GetBack';
 
+//地图功能页面
+import MT_layermanager from './component/mapTools/MT_layerManager';
+import MT_dataCollection from './component/mapTools/MT_dataCollection';
+import Analyst_params from './component/mapTools/Analyst_params';
+import Add_Layer from './component/mapTools/Add_Layer';
+
 const headColor = Util.USUAL_BLUE;
 const headFontColor = 'white';
 
@@ -60,6 +66,42 @@ const RootStack = StackNavigator(
       screen: GetBack,
       navigationOptions: {
         headerTitle: '找回密码',
+        headerStyle: { backgroundColor: headColor },
+        headerTitleStyle: { alignSelf: 'center' },
+        headerTintColor: headFontColor,
+      }
+    },
+    LayerManager: {
+      screen: MT_layermanager,
+      navigationOptions: {
+        headerTitle: '图层管理',
+        headerStyle: { backgroundColor: headColor },
+        headerTitleStyle: { alignSelf: 'center' },
+        headerTintColor: headFontColor,
+      }
+    },
+    DataCollection: {
+      screen: MT_dataCollection,
+      navigationOptions: {
+        headerTitle: '数据采集',
+        headerStyle: { backgroundColor: headColor },
+        headerTitleStyle: { alignSelf: 'center' },
+        headerTintColor: headFontColor,
+      }
+    },
+    AnalystParams: {
+      screen: Analyst_params,
+      navigationOptions: {
+        headerTitle: '缓冲区分析',
+        headerStyle: { backgroundColor: headColor },
+        headerTitleStyle: { alignSelf: 'center' },
+        headerTintColor: headFontColor,
+      }
+    },
+    AddLayer: {
+      screen: Add_Layer,
+      navigationOptions: {
+        headerTitle: '添加图层',
         headerStyle: { backgroundColor: headColor },
         headerTitleStyle: { alignSelf: 'center' },
         headerTintColor: headFontColor,

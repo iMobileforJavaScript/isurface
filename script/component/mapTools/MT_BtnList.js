@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, StyleSheet, Dimensions, FlatList } from 'react-native';
 import * as Util from '../../util/const_util';
 
+import NavigationService from '../../NavigationService';
 import MT_Btn from './MT_Btn';
 
 const WIDTH = Util.WIDTH;
@@ -18,6 +19,7 @@ let oldPress = null;
 let type = '';
 
 export default class MT_BtnList extends React.Component {
+
   _showManager = (newPress) => {
     if (oldPress && (oldPress == newPress)) {
       show = !show;
@@ -43,10 +45,18 @@ export default class MT_BtnList extends React.Component {
     this.props.POP_List(show, type);
   }
 
+  _dataCollection =()=>{
+    NavigationService.navigate('DataCollection');
+  }
+
+  _layerManager = ()=>{
+    NavigationService.navigate('LayerManager');
+  }
+
   state = {
     data: [{ key: '添加图层', image: require('../../../image/add_layer.png'), btnClick: this._addLayer },
-    { key: '数据采集', image: require('../../../image/data_collect.png') , btnClick: ()=>{console.log('44444444!')}},
-    { key: '图层管理', image: require('../../../image/layer_control.png') , btnClick: ()=>{console.log('44444444!')}},
+    { key: '数据采集', image: require('../../../image/data_collect.png') , btnClick: this._dataCollection},
+    { key: '图层管理', image: require('../../../image/layer_control.png') , btnClick: this._layerManager},
     { key: '数据分析', image: require('../../../image/analyst.png'), btnClick: this._analyst },
     { key: '小工具', image: require('../../../image/tools.png'), btnClick: this._tools}],
   }

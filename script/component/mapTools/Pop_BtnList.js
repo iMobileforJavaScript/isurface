@@ -18,25 +18,33 @@ export default class Pop_BtnList extends React.Component {
     this.props.measure(measure_show);
   }
 
+  _analyst_btn_click = () =>{
+    this.props.analyst();
+  }
+
+  _addLayer_btn_click =(type)=>{
+    this.props.addlayer(type);
+  }
+
   _btn_click_manager = (key) => {
     switch (key) {
       case '点':
-        console.log('press点');
+        this._addLayer_btn_click('point');
         break;
       case '线':
-        console.log('press线');
+      this._addLayer_btn_click('line');
         break;
       case '面':
-        console.log('press面');
+      this._addLayer_btn_click('area');
         break;
       case '文字':
-        console.log('press文字');
+      this._addLayer_btn_click('text');
         break;
       case '缓冲区分析':
-        console.log('press缓冲区分析');
+        this._analyst_btn_click();
         break;
       case '叠加分析':
-        console.log('press叠加分析');
+        this._analyst_btn_click();
         break;
       case '网络分析':
         console.log('press网络分析');
