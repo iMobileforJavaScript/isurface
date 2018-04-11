@@ -9,7 +9,7 @@ export default class MT_layermanager extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>todo:layermanager!</Text>
+        <Text>todo:layermanager12345!</Text>
       </View>
     );
   }

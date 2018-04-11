@@ -68,6 +68,16 @@ export default class Map extends React.Component {
     });
   }
 
+  //一级pop按钮 图层管理 点击函数
+  _layer_manager =()=>{
+    NavigationService.navigate('LayerManager');
+  }
+
+    //一级pop按钮 数据采集 点击函数
+    _data_collection =()=>{
+      NavigationService.navigate('DataCollection');
+    }
+
   //二级pop按钮 量算 点击函数
   _pop_measure_click = (show) => {
     this.setState(previousState => {
@@ -81,9 +91,11 @@ export default class Map extends React.Component {
     NavigationService.navigate('AnalystParams');
   }
 
-  //二级pop按钮 添加图层 点击函数
+  //二级pop按钮 添加图层（点、线、面、文字） 点击函数
   _pop_addLayer_click =(type)=>{
-    NavigationService.navigate('AddLayer',{ type: type });
+    let ws = this.workspace;
+    let mc = this.mapControl;
+    NavigationService.navigate('AddLayer',{ type: type , workspace:ws, mapCtr:mc});
   }
 
   /*测量功能模块*/
@@ -132,7 +144,7 @@ export default class Map extends React.Component {
         <SMMapView style={styles.map} onGetInstance={this._onGetInstance} />
         {this.state.measureShow && <Pop_MeasureBar measureLine={this._measure_line} measureSquare={this._measure_square} measurePause={this._measure_pause} style={styles.measure} result={this.state.measureResult} />}
         {this.state.popShow && <Pop_BtnList style={styles.pop} popType={this.state.popType} measure={this._pop_measure_click} analyst={this._pop_analyst_click} addlayer={this._pop_addLayer_click}/>}
-        <MT_BtnList POP_List={this._pop_list} />
+        <MT_BtnList POP_List={this._pop_list} layerManager={this._layer_manager} dataCollection={this._data_collection}/>
       </View>
     );
   }

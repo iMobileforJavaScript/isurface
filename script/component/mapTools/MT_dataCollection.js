@@ -9,7 +9,7 @@ export default class MT_dataCollection extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>todo:dataCollection!</Text>
+        <Text>todo:dataCollection2222!</Text>
       </View>
     );
   }

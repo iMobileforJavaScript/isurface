@@ -46,11 +46,11 @@ export default class MT_BtnList extends React.Component {
   }
 
   _dataCollection =()=>{
-    NavigationService.navigate('DataCollection');
+    this.props.dataCollection();
   }
 
   _layerManager = ()=>{
-    NavigationService.navigate('LayerManager');
+    this.props.layerManager();
   }
 
   state = {
