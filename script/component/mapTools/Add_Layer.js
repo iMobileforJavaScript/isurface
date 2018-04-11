@@ -32,28 +32,28 @@ export default class Add_Layer extends React.Component {
     }
   }
 
-  state={
-    InputText:'',
+  state = {
+    InputText: '',
   }
 
-  _test_change =(text)=>{
-  this.setState({InputText:text});
+  _test_change = (text) => {
+    this.setState({ InputText: text });
   }
 
-  _addlayer =async()=>{
-  //datasource -> createDatasetVector
-  //workspace -> openDatasource
-  //let dataSource = await this.workspace.
+  _addlayer = async () => {
+    //datasource -> createDatasetVector
+    //workspace -> openDatasource
+    //let dataSource = await this.workspace.
   }
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.sup}>
-          <BorderInput placeholder='请输入图层名称' textChange={this._test_change}/>
+          <BorderInput placeholder='请输入图层名称' textChange={this._test_change} />
         </View>
         <View style={styles.sup}>
-          <BtnTwo text='确定' btnClick={this._addlayer}/>
+          <BtnTwo text='确定' btnClick={this._addlayer} />
         </View>
       </View>
     );
@@ -67,6 +67,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   sup: {
-    margin:7,
+    margin: 7,
   }
 });

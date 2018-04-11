@@ -69,14 +69,16 @@ export default class Map extends React.Component {
   }
 
   //一级pop按钮 图层管理 点击函数
-  _layer_manager =()=>{
-    NavigationService.navigate('LayerManager');
+  _layer_manager = () => {
+    let ws = this.workspace;
+    let map = this.map;
+    NavigationService.navigate('LayerManager',{ workspace: ws, map: map });
   }
 
-    //一级pop按钮 数据采集 点击函数
-    _data_collection =()=>{
-      NavigationService.navigate('DataCollection');
-    }
+  //一级pop按钮 数据采集 点击函数
+  _data_collection = () => {
+    NavigationService.navigate('DataCollection');
+  }
 
   //二级pop按钮 量算 点击函数
   _pop_measure_click = (show) => {
@@ -87,15 +89,15 @@ export default class Map extends React.Component {
   }
 
   //二级pop按钮 缓冲区分析&&叠加分析 点击函数
-  _pop_analyst_click = ()=>{
+  _pop_analyst_click = () => {
     NavigationService.navigate('AnalystParams');
   }
 
   //二级pop按钮 添加图层（点、线、面、文字） 点击函数
-  _pop_addLayer_click =(type)=>{
+  _pop_addLayer_click = (type) => {
     let ws = this.workspace;
     let mc = this.mapControl;
-    NavigationService.navigate('AddLayer',{ type: type , workspace:ws, mapCtr:mc});
+    NavigationService.navigate('AddLayer', { type: type, workspace: ws, mapCtr: mc });
   }
 
   /*测量功能模块*/
@@ -143,8 +145,8 @@ export default class Map extends React.Component {
       <View style={styles.container}>
         <SMMapView style={styles.map} onGetInstance={this._onGetInstance} />
         {this.state.measureShow && <Pop_MeasureBar measureLine={this._measure_line} measureSquare={this._measure_square} measurePause={this._measure_pause} style={styles.measure} result={this.state.measureResult} />}
-        {this.state.popShow && <Pop_BtnList style={styles.pop} popType={this.state.popType} measure={this._pop_measure_click} analyst={this._pop_analyst_click} addlayer={this._pop_addLayer_click}/>}
-        <MT_BtnList POP_List={this._pop_list} layerManager={this._layer_manager} dataCollection={this._data_collection}/>
+        {this.state.popShow && <Pop_BtnList style={styles.pop} popType={this.state.popType} measure={this._pop_measure_click} analyst={this._pop_analyst_click} addlayer={this._pop_addLayer_click} />}
+        <MT_BtnList POP_List={this._pop_list} layerManager={this._layer_manager} dataCollection={this._data_collection} />
       </View>
     );
   }
