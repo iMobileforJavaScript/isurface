@@ -15,19 +15,19 @@ export default class Add_Layer extends React.Component {
     super(props);
     const { state } = this.props.navigation;
     this.workspace = state.params.workspace;
-    this.mapCtr = state.params.mapCtr;
+    this.map = state.params.map;
     switch (state.params.type) {
       case 'point':
-        console.log('点!!!');
+        this.type = 1;
         break;
       case 'line':
-        console.log('线!!!');
+        this.type = 3;
         break;
       case 'area':
-        console.log('面!!!');
+        this.type = 5;
         break;
       case 'text':
-        console.log('文字!!!');
+        this.type = 7;
         break;
     }
   }
@@ -41,9 +41,13 @@ export default class Add_Layer extends React.Component {
   }
 
   _addlayer = async () => {
-    //datasource -> createDatasetVector
-    //workspace -> openDatasource
-    //let dataSource = await this.workspace.
+    let name = this.state.InputText;
+    let type = this.type;
+    let dataSources = await this.workspace.getDatasources();
+    let dataSource = await dataSources.get(0);
+    let dsVector = await dataSource.createDatasetVector(name,type,0);
+    await this.map.addLayer(dsVector,true);
+    await this.map.refresh();
   }
 
   render() {

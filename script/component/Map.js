@@ -96,8 +96,8 @@ export default class Map extends React.Component {
   //二级pop按钮 添加图层（点、线、面、文字） 点击函数
   _pop_addLayer_click = (type) => {
     let ws = this.workspace;
-    let mc = this.mapControl;
-    NavigationService.navigate('AddLayer', { type: type, workspace: ws, mapCtr: mc });
+    let map = this.map;
+    NavigationService.navigate('AddLayer', { type: type, workspace: ws, map: map });
   }
 
   /*测量功能模块*/

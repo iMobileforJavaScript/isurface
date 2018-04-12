@@ -1,3 +1,9 @@
+/*
+  Copyright © SuperMap. All rights reserved.
+  Author: Wang zihao
+  E-mail: zihaowang5325@qq.com 
+*/
+
 import * as React from 'react';
 import { View, StyleSheet, Text, TouchableHighlight, FlatList, Image } from 'react-native';
 import * as Util from '../../util/const_util';
