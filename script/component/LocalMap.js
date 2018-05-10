@@ -8,17 +8,17 @@ import * as React from 'react';
 import { View, StyleSheet, Platform, Geolocation } from 'react-native';
 import { Workspace, SMMapView, Utility, Point2D, Action } from 'imobile_for_reactnative';
 
+import NavigationService from '../NavigationService';
 import * as Util from '../util/const_util';
 import Pop_MeasureBar from './mapTools/Pop_MeasureBar';
 import Pop_BtnList from './mapTools/Pop_BtnList';
 import MT_BtnList from './mapTools/MT_BtnList';
 
-export default class LocalMap extends React.Component {
+export default class Map extends React.Component {
   constructor(props) {
     super(props);
-    const { state } = this.props.navigation
-    //state.params.XX
-    this.PATH = state.params.path;
+    const { state } = this.props.navigation;
+    this.path = state.params.path;
   }
 
   state = {
@@ -33,22 +33,42 @@ export default class LocalMap extends React.Component {
     this._addMap();
   }
 
-  _toolsClickTest = () => {
-    console.log('12345');
-  }
-
   _pop_list = (show, type) => {//底部BtnBar事件点击回掉，负责底部二级pop的弹出
     this.setState(previousState => {
       return { popShow: show, popType: type, };
     });
   }
 
-  //二级pop按钮点击事件函数
+  //一级pop按钮 图层管理 点击函数
+  _layer_manager = () => {
+    let ws = this.workspace;
+    let map = this.map;
+    NavigationService.navigate('LayerManager',{ workspace: ws, map: map });
+  }
+
+  //一级pop按钮 数据采集 点击函数
+  _data_collection = () => {
+    NavigationService.navigate('DataCollection');
+  }
+
+  //二级pop按钮 量算 点击函数
   _pop_measure_click = (show) => {
     this.setState(previousState => {
       return { measureShow: show };
     });
     this._add_measure_listener();// to do list:优化，不需每次都添加listener
+  }
+
+  //二级pop按钮 缓冲区分析&&叠加分析 点击函数
+  _pop_analyst_click = () => {
+    NavigationService.navigate('AnalystParams');
+  }
+
+  //二级pop按钮 添加图层（点、线、面、文字） 点击函数
+  _pop_addLayer_click = (type) => {
+    let ws = this.workspace;
+    let map = this.map;
+    NavigationService.navigate('AddLayer', { type: type, workspace: ws, map: map });
   }
 
   /*测量功能模块*/
@@ -90,54 +110,34 @@ export default class LocalMap extends React.Component {
     await this.mapControl.setAction(Action.PAN);
     this._remove_measure_listener();
   }
-  /*测量功能模块到此截止*/
 
   render() {
     return (
       <View style={styles.container}>
         <SMMapView style={styles.map} onGetInstance={this._onGetInstance} />
         {this.state.measureShow && <Pop_MeasureBar measureLine={this._measure_line} measureSquare={this._measure_square} measurePause={this._measure_pause} style={styles.measure} result={this.state.measureResult} />}
-        {this.state.popShow && <Pop_BtnList style={styles.pop} popType={this.state.popType} measure={this._pop_measure_click} />}
-        <MT_BtnList POP_List={this._pop_list} />
+        {this.state.popShow && <Pop_BtnList style={styles.pop} popType={this.state.popType} measure={this._pop_measure_click} analyst={this._pop_analyst_click} addlayer={this._pop_addLayer_click} />}
+        <MT_BtnList POP_List={this._pop_list} layerManager={this._layer_manager} dataCollection={this._data_collection} />
       </View>
     );
   }
 
   _addMap = () => {
-    const workspaceModule = new Workspace();
-    //    const point2dModule = new Point2D();
+    var workspaceModule = new Workspace();
     (async function () {
-      this.workspace = await workspaceModule.createObj();
-      this.mapControl = await this.mapView.getMapControl();
-      this.map = await this.mapControl.getMap();
-      await this.map.setWorkspace(this.workspace);
+        this.workspace = await workspaceModule.createObj();
+        this.mapControl = await this.mapView.getMapControl();
+        this.map = await this.mapControl.getMap();
+     
+        var filePath = '';
+        var filePath = await Utility.appendingHomeDirectory(this.path);
 
-      let URL = '';
-      if (Platform.OS === 'ios') {
-        filePath = await Utility.appendingHomeDirectory(this.PATH);
-      } else {
-        filePath = await Utility.appendingHomeDirectory(this.PATH);
-      }
-
-      let openWk = await this.workspace.open(filePath);
-      await this.map.setWorkspace(this.workspace);
-      let mapName = await this.workspace.getMapName(0);
-      await this.map.open(mapName);
-      await this.map.refresh();
-      /*定位代码,离线地图暂不开放
-            await this.map.setScale(0.0001);
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                let lat = position.coords.latitude;
-                let lon = position.coords.longitude;
-                (async () => {
-                  let centerPoint = await point2dModule.createObj(lon, lat);
-                  await this.map.setCenter(centerPoint);
-                  await this.map.refresh();
-                }).bind(this)();
-              }
-            );
-      */
+        var openWk = await this.workspace.open(filePath);
+        await this.map.setWorkspace(this.workspace);
+        var mapName = await this.workspace.getMapName(0);
+        await this.map.open(mapName);
+        // await this.map.setScale(0.00001);
+        await this.map.refresh();
     }).bind(this)();
   }
 

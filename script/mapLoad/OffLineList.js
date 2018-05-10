@@ -20,10 +20,14 @@ class Item extends React.Component {
 }
 
 export default class OffLineList extends React.Component {
+  _btn_click=()=>{
+    NavigationService.navigate('LocalMap');
+  }
+
   _renderItem = ({ item }) => {
     let key = item.key;
     return (
-      <Item text={key} itemClick={() => { NavigationService.navigate('LocalMap'); }} />
+      <Item text={key} itemClick={this._btn_click} />
     );
   }
 
