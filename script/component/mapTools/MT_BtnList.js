@@ -45,20 +45,21 @@ export default class MT_BtnList extends React.Component {
     this.props.POP_List(show, type);
   }
 
-  _dataCollection =()=>{
+  _dataCollection = () => {
     this.props.dataCollection();
   }
 
-  _layerManager = ()=>{
+  _layerManager = () => {
     this.props.layerManager();
   }
 
   state = {
-    data: [{ key: '添加图层', image: require('../../../image/add_layer.png'), btnClick: this._addLayer },
-    { key: '数据采集', image: require('../../../image/data_collect.png') , btnClick: this._dataCollection},
-    { key: '图层管理', image: require('../../../image/layer_control.png') , btnClick: this._layerManager},
+    data: [{ key: '数据采集', image: require('../../../image/data_collect.png'), btnClick: this._dataCollection },
+    { key: '数据编辑', image: require('../../../image/data_edit.png'), btnClick: this._addLayer },
+    { key: '地图管理', image: require('../../../image/map_manager.png'), btnClick: this._layerManager },
+    { key: '数据管理', image: require('../../../image/data_manager.png'), btnClick: this._dataCollection },
     { key: '数据分析', image: require('../../../image/analyst.png'), btnClick: this._analyst },
-    { key: '小工具', image: require('../../../image/tools.png'), btnClick: this._tools}],
+    { key: '工具', image: require('../../../image/tools.png'), btnClick: this._tools }],
   }
 
   _renderItem = ({ item }) => {

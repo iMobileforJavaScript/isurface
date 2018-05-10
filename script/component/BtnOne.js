@@ -18,7 +18,7 @@ export default class BtnOne extends React.Component {
 
   render() {
     return (
-      <TouchableHighlight style={styles.container} onPress={this.props.BtnClick} underlayColor={BTN_UNDERCOLOR}>
+      <TouchableHighlight accessible={true} accessibilityLabel={'在线地图'} style={styles.container} onPress={this.props.BtnClick} underlayColor={BTN_UNDERCOLOR}>
         <View style={styles.inner}>
           {this.props.BtnImageSrc && <Image style={styles.image} source={this.props.BtnImageSrc} />}
           {this.props.BtnText && <Text style={styles.text}>{this.props.BtnText}</Text>}
