@@ -14,7 +14,6 @@ export default class LocalMap extends React.Component {
   constructor(props) {
     super(props);
     const { state } = this.props.navigation
-    //state.params.XX
     this.PATH = state.params.path;
   }
 
@@ -38,7 +37,7 @@ export default class LocalMap extends React.Component {
       this.workspace = await workspaceModule.createObj();   //创建workspace实例
       this.scene = await this.sceneControl.getScene();      //获取场景对象
       await this.scene.setWorkspace(this.workspace);        //设置工作空间
-      var filePath = await Utility.appendingHomeDirectory('/SampleData/凯德Mall/凯德Mall.sxwu');
+      var filePath = await Utility.appendingHomeDirectory(this.PATH);
       var openWk = await this.workspace.open(filePath);     //打开工作空间
       if (!openWk) {
         console.log(" 打开工作空间失败");
@@ -48,13 +47,13 @@ export default class LocalMap extends React.Component {
       await this.scene.open(sceneName);                     //根据名称打开指定场景
       await this.scene.refresh();                           //刷新场景
 
-      let layers3ds = await this.scene.getLayer3Ds();
-      for (let i = 0; i < 3; i++) {
-        let layer3d = await layers3ds.get(i);
-        let isvisable = await layer3d.getVisable();
-        await layer3d.setVisable(!isvisable);
-      }
-      await this.scene.refresh()
+      // let layers3ds = await this.scene.getLayer3Ds();
+      // for (let i = 0; i < 3; i++) {
+      //   let layer3d = await layers3ds.get(i);
+      //   let isvisable = await layer3d.getVisable();
+      //   await layer3d.setVisable(!isvisable);
+      // }
+      // await this.scene.refresh()
     }).bind(this)();
   }
 

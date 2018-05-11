@@ -14,6 +14,7 @@ import TabNavi from './Tab_Router';
 import MapLoad from './mapLoad/mapLoad';
 import Map from './component/Map';
 import LocalMap from './component/LocalMap';
+import Map3D from './component/Map3D';
 
 //我的
 import Login from './mine/login';
@@ -58,6 +59,14 @@ const RootStack = StackNavigator(
     },
     LocalMapView: {
       screen: LocalMap,
+      navigationOptions: {
+        headerStyle: { backgroundColor: headColor },
+        headerTitleStyle: { alignSelf: 'center' },
+        headerTintColor: headFontColor,
+      }
+    },
+    Map3D: {
+      screen: Map3D,
       navigationOptions: {
         headerStyle: { backgroundColor: headColor },
         headerTitleStyle: { alignSelf: 'center' },

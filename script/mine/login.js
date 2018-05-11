@@ -35,7 +35,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header title='我的iSurface' />
+        <Header title='iTablet登录' />
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
           <View style={{ alignItems: 'center', }}>
             <Input placeholder='手机号' />

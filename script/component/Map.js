@@ -53,6 +53,13 @@ export default class Map extends React.Component {
     measureResult: 0,
   }
 
+  componentWillUnmount(){
+    (async function(){
+      await this.map.close();
+      await this.workspace.closeWorkspace();
+    }).bind(this)()
+  }
+
   _onGetInstance = (mapView) => {
     this.mapView = mapView;
     this._addMap();

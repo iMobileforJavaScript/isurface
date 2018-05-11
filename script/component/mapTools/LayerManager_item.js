@@ -5,7 +5,7 @@
 */
 
 import * as React from 'react';
-import { View, StyleSheet, Text, TouchableHighlight, FlatList, Image } from 'react-native';
+import { View, StyleSheet, Text, TouchableHighlight, FlatList, Image,PixelRatio } from 'react-native';
 import * as Util from '../../util/const_util';
 
 import MT_Btn from './MT_Btn';
@@ -17,7 +17,7 @@ export default class LayerManager_item extends React.Component {
     this.map = this.props.map;
     (async function () {
       let editable = await this.layer.getEditable();
-      let {isVisible} = await this.layer.getVisible();// todo:  此处底层bug,需要修改
+      let {isVisible} = await this.layer.getVisible();// todo:  此处{}为底层bug,需要修改
       let selectable = await this.layer.isSelectable();
       this.setState({
         editable:editable,
@@ -103,6 +103,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    borderStyle:'solid',
+    borderTopWidth:0,
+    borderLeftWidth:0,
+    borderRightWidth:0,
+    borderBottomWidth:1,
+    borderColor:'#bbbbbb'
   },
   rowOne: {
     height:46,
@@ -137,5 +143,6 @@ const styles = StyleSheet.create({
   rowTwo: {
     height:46,
     width:Util.WIDTH,
+    backgroundColor:'white'
   },
 });

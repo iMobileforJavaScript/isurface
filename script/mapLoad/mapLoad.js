@@ -20,6 +20,7 @@ import ExampleMapList from './ExampleMapList';
 const width = Dimensions.get('window').width;
 
 export default class MapLoad extends React.Component {
+
   _offLine_More = () => {
     console.log('click off-line');
   }
