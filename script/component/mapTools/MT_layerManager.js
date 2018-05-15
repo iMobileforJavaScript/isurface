@@ -8,6 +8,7 @@ import * as React from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 import * as Util from '../../util/const_util';
 
+import LayerManager_tab from './LayerManager_tab';
 import LayerManager_item from './LayerManager_item';
 
 export default class Add_Layer extends React.Component {
@@ -47,9 +48,11 @@ export default class Add_Layer extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+      <LayerManager_tab/>
       <FlatList
         data={this.state.datasourceList}
         renderItem={this._renderItem}
+        getItemLayout={(data, index) => ( {length: 47, offset: 47 * index, index} )}
       />
       </View>
     );

@@ -8,17 +8,20 @@ import * as React from 'react';
 import { View, StyleSheet, Text, TouchableHighlight, FlatList, Image,PixelRatio } from 'react-native';
 import * as Util from '../../util/const_util';
 
-import MT_Btn from './MT_Btn';
+import BtnOne from '../BtnOne';
 
 export default class LayerManager_item extends React.Component {
-  constructor(props){
 
+  _testClick=()=>{
+    console.log('12345');
   }
 
   render() {
     return (
       <View style={styles.container}>
-
+        <BtnOne BtnText='添加数据集' BtnImageSrc={require('../../../image/add_dataset.png')} BtnClick={this._testClick}/>
+        <BtnOne BtnText='保存' BtnImageSrc={require('../../../image/save.png')} BtnClick={this._testClick}/>
+        <BtnOne BtnText='地图切换' BtnImageSrc={require('../../../image/map_change.png')} BtnClick={this._testClick}/>
       </View>
     );
   }
@@ -26,14 +29,10 @@ export default class LayerManager_item extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderStyle:'solid',
-    borderTopWidth:0,
-    borderLeftWidth:0,
-    borderRightWidth:0,
-    borderBottomWidth:1,
-    borderColor:'#bbbbbb'
+    display:'flex',
+    height:0.14*Util.WIDTH,
+    width:Util.WIDTH,
+    flexDirection:'row',
+
   },
 });
