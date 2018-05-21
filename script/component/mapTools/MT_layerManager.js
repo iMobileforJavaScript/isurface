@@ -8,6 +8,8 @@ import * as React from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 import * as Util from '../../util/const_util';
 
+import NavigationService from '../../NavigationService';
+
 import LayerManager_tab from './LayerManager_tab';
 import LayerManager_item from './LayerManager_item';
 
@@ -45,10 +47,26 @@ export default class Add_Layer extends React.Component {
     );
   }
 
+  /*LayerManager_tab点击方法*/
+  //地图切换
+  _map_change=()=>{
+    NavigationService.navigate('MapChange',{workspace:this.workspace,map:this.map});
+  }
+  //地图保存
+  _map_save=()=>{
+    (async function(){
+      await this.map.save();
+    }).bind(this)()
+  }
+  //添加数据集
+  _add_dataset=()=>{
+    NavigationService.navigate('AddDataset',{workspace:this.workspace,map:this.map});
+  }
+
   render() {
     return (
       <View style={styles.container}>
-      <LayerManager_tab/>
+      <LayerManager_tab mapChange={this._map_change} mapSave={this._map_save} addDataset={this._add_dataset}/>
       <FlatList
         data={this.state.datasourceList}
         renderItem={this._renderItem}

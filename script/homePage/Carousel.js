@@ -8,7 +8,6 @@ const { width, height } = Dimensions.get('window');
 export default class CarouselExample extends React.Component {
   constructor(props){
     super(props);
-    console.log('11111111111wwwwww'+width);
     this.state = {
       size: { width, height },
     };

@@ -26,6 +26,9 @@ import Local_Map from './localMap/Local_Map';
 //地图功能页面
 import MT_layermanager from './component/mapTools/MT_layerManager';//todo: layermanager->mapManager(文件更名)
 import MT_dataCollection from './component/mapTools/MT_dataCollection';
+import MT_dataManager from './component/mapTools/MT_dataManager';
+import LayerManager_mapChange from './component/mapTools/LayerManager_mapChange';
+import LayerManager_addDataset from './component/mapTools/LayerManager_addDataset';
 import Analyst_params from './component/mapTools/Analyst_params';
 import Add_Layer from './component/mapTools/Add_Layer';
 
@@ -73,6 +76,24 @@ const RootStack = StackNavigator(
         headerTintColor: headFontColor,
       }
     },
+    MapChange: {
+      screen: LayerManager_mapChange,
+      navigationOptions: {
+        headerTitle: '地图切换',
+        headerStyle: { backgroundColor: headColor },
+        headerTitleStyle: { alignSelf: 'center' },
+        headerTintColor: headFontColor,
+      }
+    },
+    AddDataset: {
+      screen: LayerManager_addDataset,
+      navigationOptions: {
+        headerTitle: '添加数据集',
+        headerStyle: { backgroundColor: headColor },
+        headerTitleStyle: { alignSelf: 'center' },
+        headerTintColor: headFontColor,
+      }
+    },
     Register: {
       screen: Register,
       navigationOptions: {
@@ -113,6 +134,15 @@ const RootStack = StackNavigator(
       screen: MT_dataCollection,
       navigationOptions: {
         headerTitle: '数据采集',
+        headerStyle: { backgroundColor: headColor },
+        headerTitleStyle: { alignSelf: 'center' },
+        headerTintColor: headFontColor,
+      }
+    },
+    DataManager: {
+      screen: MT_dataManager,
+      navigationOptions: {
+        headerTitle: '数据管理',
         headerStyle: { backgroundColor: headColor },
         headerTitleStyle: { alignSelf: 'center' },
         headerTintColor: headFontColor,

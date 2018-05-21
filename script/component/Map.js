@@ -53,8 +53,8 @@ export default class Map extends React.Component {
     measureResult: 0,
   }
 
-  componentWillUnmount(){
-    (async function(){
+  componentWillUnmount() {
+    (async function () {
       await this.map.close();
       await this.workspace.closeWorkspace();
     }).bind(this)()
@@ -63,10 +63,6 @@ export default class Map extends React.Component {
   _onGetInstance = (mapView) => {
     this.mapView = mapView;
     this._addMap();
-  }
-
-  _toolsClickTest = () => {
-    console.log('12345');
   }
 
   _pop_list = (show, type) => {//底部BtnBar事件点击回掉，负责底部二级pop的弹出
@@ -79,12 +75,17 @@ export default class Map extends React.Component {
   _layer_manager = () => {
     let ws = this.workspace;
     let map = this.map;
-    NavigationService.navigate('LayerManager',{ workspace: ws, map: map });
+    NavigationService.navigate('LayerManager', { workspace: ws, map: map });
   }
 
   //一级pop按钮 数据采集 点击函数
   _data_collection = () => {
     NavigationService.navigate('DataCollection');
+  }
+
+  //一级pop按钮 数据管理 点击函数
+  _data_manager = () => {
+    NavigationService.navigate('DataManager');
   }
 
   //二级pop按钮 量算 点击函数
@@ -153,7 +154,7 @@ export default class Map extends React.Component {
         <SMMapView style={styles.map} onGetInstance={this._onGetInstance} />
         {this.state.measureShow && <Pop_MeasureBar measureLine={this._measure_line} measureSquare={this._measure_square} measurePause={this._measure_pause} style={styles.measure} result={this.state.measureResult} />}
         {this.state.popShow && <Pop_BtnList style={styles.pop} popType={this.state.popType} measure={this._pop_measure_click} analyst={this._pop_analyst_click} addlayer={this._pop_addLayer_click} />}
-        <MT_BtnList POP_List={this._pop_list} layerManager={this._layer_manager} dataCollection={this._data_collection} />
+        <MT_BtnList POP_List={this._pop_list} layerManager={this._layer_manager} dataCollection={this._data_collection} dataManager={this._data_manager} />
       </View>
     );
   }
