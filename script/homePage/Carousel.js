@@ -8,7 +8,6 @@ const { width, height } = Dimensions.get('window');
 export default class CarouselExample extends React.Component {
   constructor(props){
     super(props);
-
     this.state = {
       size: { width, height },
     };
@@ -29,8 +28,8 @@ export default class CarouselExample extends React.Component {
           pageInfo
           onAnimateNextPage={(p) => console.log(p)}
         >
-          <View style={[{ backgroundColor: '#F5FCFF' }, this.state.size]}><Image style={styles.scrollImage} source={require('../../image/home_scroll1.png')}/></View>
-          <View style={[{ backgroundColor: '#F5FCFF' }, this.state.size]}><Image style={styles.scrollImage} source={require('../../image/home_scroll2.png')}/></View>
+          <View style={[{ backgroundColor: '#F5FCFF' }, this.state.size]}><Image style={styles.scrollImage} resizeMode='cover' source={require('../../image/home_scroll1.png')}/></View>
+          <View style={[{ backgroundColor: '#F5FCFF' }, this.state.size]}><Image style={styles.scrollImage} resizeMode='cover' source={require('../../image/home_scroll2.png')}/></View>
         </Carousel>
       </View>
     );
@@ -39,11 +38,13 @@ export default class CarouselExample extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height:250,
+    height:0.5*width,
     width:width,
     alignSelf: 'center',
   },
   scrollImage: {
     alignSelf: 'center',
+    height:0.5*width,
+    width:width,
   }
 });

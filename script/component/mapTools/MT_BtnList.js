@@ -49,6 +49,10 @@ export default class MT_BtnList extends React.Component {
     this.props.dataCollection();
   }
 
+  _dataManager = () => {
+    this.props.dataManager();
+  }
+
   _layerManager = () => {
     this.props.layerManager();
   }
@@ -57,7 +61,7 @@ export default class MT_BtnList extends React.Component {
     data: [{ key: '数据采集', image: require('../../../image/data_collect.png'), btnClick: this._dataCollection },
     { key: '数据编辑', image: require('../../../image/data_edit.png'), btnClick: this._addLayer },
     { key: '地图管理', image: require('../../../image/map_manager.png'), btnClick: this._layerManager },
-    { key: '数据管理', image: require('../../../image/data_manager.png'), btnClick: this._dataCollection },
+    { key: '数据管理', image: require('../../../image/data_manager.png'), btnClick: this._dataManager },
     { key: '数据分析', image: require('../../../image/analyst.png'), btnClick: this._analyst },
     { key: '工具', image: require('../../../image/tools.png'), btnClick: this._tools }],
   }

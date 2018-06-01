@@ -43,12 +43,19 @@ export default class Map extends React.Component {
   _layer_manager = () => {
     let ws = this.workspace;
     let map = this.map;
-    NavigationService.navigate('LayerManager',{ workspace: ws, map: map });
+    NavigationService.navigate('LayerManager', { workspace: ws, map: map });
   }
 
   //一级pop按钮 数据采集 点击函数
   _data_collection = () => {
     NavigationService.navigate('DataCollection');
+  }
+
+  //一级pop按钮 数据管理 点击函数
+  _data_manager = () => {
+    let ws = this.workspace;
+    let map = this.map;
+    NavigationService.navigate('DataManager', { workspace: ws, map: map });
   }
 
   //二级pop按钮 量算 点击函数
@@ -117,7 +124,7 @@ export default class Map extends React.Component {
         <SMMapView style={styles.map} onGetInstance={this._onGetInstance} />
         {this.state.measureShow && <Pop_MeasureBar measureLine={this._measure_line} measureSquare={this._measure_square} measurePause={this._measure_pause} style={styles.measure} result={this.state.measureResult} />}
         {this.state.popShow && <Pop_BtnList style={styles.pop} popType={this.state.popType} measure={this._pop_measure_click} analyst={this._pop_analyst_click} addlayer={this._pop_addLayer_click} />}
-        <MT_BtnList POP_List={this._pop_list} layerManager={this._layer_manager} dataCollection={this._data_collection} />
+        <MT_BtnList POP_List={this._pop_list} layerManager={this._layer_manager} dataCollection={this._data_collection} dataManager={this._data_manager} />
       </View>
     );
   }
@@ -125,19 +132,19 @@ export default class Map extends React.Component {
   _addMap = () => {
     var workspaceModule = new Workspace();
     (async function () {
-        this.workspace = await workspaceModule.createObj();
-        this.mapControl = await this.mapView.getMapControl();
-        this.map = await this.mapControl.getMap();
-     
-        var filePath = '';
-        var filePath = await Utility.appendingHomeDirectory(this.path);
+      this.workspace = await workspaceModule.createObj();
+      this.mapControl = await this.mapView.getMapControl();
+      this.map = await this.mapControl.getMap();
 
-        var openWk = await this.workspace.open(filePath);
-        await this.map.setWorkspace(this.workspace);
-        var mapName = await this.workspace.getMapName(0);
-        await this.map.open(mapName);
-        // await this.map.setScale(0.00001);
-        await this.map.refresh();
+      var filePath = '';
+      var filePath = await Utility.appendingHomeDirectory(this.path);
+
+      var openWk = await this.workspace.open(filePath);
+      await this.map.setWorkspace(this.workspace);
+      var mapName = await this.workspace.getMapName(0);
+      await this.map.open(mapName);
+      // await this.map.setScale(0.00001);
+      await this.map.refresh();
     }).bind(this)();
   }
 

@@ -10,32 +10,25 @@ import * as Util from '../../util/const_util';
 
 import BtnOne from '../BtnOne';
 
-export default class LayerManager_tab extends React.Component {
+export default class DatarManager_tab extends React.Component {
 
-  _map_change=()=>{
-    if(typeof this.props.mapChange =='function'){
-      this.props.mapChange();
+  _new_datasource=()=>{
+    if(typeof this.props.dSource =='function'){
+      this.props.dSource();
     }
   }
 
-  _map_save=()=>{
-    if(typeof this.props.mapSave == 'function'){
-      this.props.mapSave();
-    }
-  }
-
-  _add_dataset=()=>{
-    if(typeof this.props.addDataset =='function'){
-      this.props.addDataset();
+  _new_dataset=()=>{
+    if(typeof this.props.dSet == 'function'){
+      this.props.dSet();
     }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <BtnOne BtnText='添加数据集' BtnImageSrc={require('../../../image/add_dataset.png')} BtnClick={this._add_dataset}/>
-        <BtnOne BtnText='保存' BtnImageSrc={require('../../../image/save.png')} BtnClick={this._map_save}/>
-        <BtnOne BtnText='地图切换' BtnImageSrc={require('../../../image/map_change.png')} BtnClick={this._map_change}/>
+        <BtnOne BtnText='新建数据源' BtnImageSrc={require('../../../image/add_dataset.png')} BtnClick={this._new_datasource}/>
+        <BtnOne BtnText='新建数据集' BtnImageSrc={require('../../../image/add_layer.png')} BtnClick={this._new_dataset}/>
       </View>
     );
   }

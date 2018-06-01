@@ -8,7 +8,7 @@ import * as React from 'react';
 import { View, StyleSheet, Text, TouchableHighlight, FlatList, Image,PixelRatio } from 'react-native';
 import * as Util from '../../util/const_util';
 
-import MT_Btn from './MT_Btn';
+import LayerManager_bottomItem from './LayerManager_bottomItem';
 
 export default class LayerManager_item extends React.Component {
   constructor(props){
@@ -17,7 +17,7 @@ export default class LayerManager_item extends React.Component {
     this.map = this.props.map;
     (async function () {
       let editable = await this.layer.getEditable();
-      let {isVisible} = await this.layer.getVisible();// todo:  此处{}为底层bug,需要修改
+      let {isVisible} = await this.layer.getVisible();// todo:  此处{}为底层bug,需要修改imobile_for_RN
       let selectable = await this.layer.isSelectable();
       this.setState({
         editable:editable,
@@ -92,7 +92,7 @@ export default class LayerManager_item extends React.Component {
           <View style={styles.text_container}><Text>{name}</Text></View>
           <TouchableHighlight style={styles.btn} underlayColor={Util.UNDERLAYCOLOR} onPress={this._pop_row}><Image style={styles.btn_image} source={image4}/></TouchableHighlight>
         </View>
-        {isShow && <View style={styles.rowTwo}><Text>1234</Text></View>}
+        {isShow && <LayerManager_bottomItem/>}
       </View>
     );
   }
