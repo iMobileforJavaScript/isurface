@@ -9,7 +9,7 @@ class App extends React.Component {
     return (
       <RootStack
         ref={navigatorRef => {
-          NavigationService.setTopLevelNavigator(navigatorRef);
+          NavigationService.setTopLevelNavigator(navigatorRef);//设置NavigationService持有stackNvaigation
         }}
       />
     )

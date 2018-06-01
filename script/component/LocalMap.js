@@ -53,7 +53,9 @@ export default class Map extends React.Component {
 
   //一级pop按钮 数据管理 点击函数
   _data_manager = () => {
-    NavigationService.navigate('DataManager');
+    let ws = this.workspace;
+    let map = this.map;
+    NavigationService.navigate('DataManager', { workspace: ws, map: map });
   }
 
   //二级pop按钮 量算 点击函数

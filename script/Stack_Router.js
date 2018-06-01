@@ -29,6 +29,8 @@ import MT_dataCollection from './component/mapTools/MT_dataCollection';
 import MT_dataManager from './component/mapTools/MT_dataManager';
 import LayerManager_mapChange from './component/mapTools/LayerManager_mapChange';
 import LayerManager_addDataset from './component/mapTools/LayerManager_addDataset';
+import DataManager_newDSource from './component/mapTools/DataManager_newDSource';
+import DataManager_newDSet from './component/mapTools/DataManager_newDSet';
 import Analyst_params from './component/mapTools/Analyst_params';
 import Add_Layer from './component/mapTools/Add_Layer';
 
@@ -89,6 +91,24 @@ const RootStack = StackNavigator(
       screen: LayerManager_addDataset,
       navigationOptions: {
         headerTitle: '添加数据集',
+        headerStyle: { backgroundColor: headColor },
+        headerTitleStyle: { alignSelf: 'center' },
+        headerTintColor: headFontColor,
+      }
+    },
+    NewDataset: {
+      screen: DataManager_newDSet,
+      navigationOptions: {
+        headerTitle: '新建数据集',
+        headerStyle: { backgroundColor: headColor },
+        headerTitleStyle: { alignSelf: 'center' },
+        headerTintColor: headFontColor,
+      }
+    },
+    NewDatasource: {
+      screen: DataManager_newDSource,
+      navigationOptions: {
+        headerTitle: '新建数据源',
         headerStyle: { backgroundColor: headColor },
         headerTitleStyle: { alignSelf: 'center' },
         headerTintColor: headFontColor,
